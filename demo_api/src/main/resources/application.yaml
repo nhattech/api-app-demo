@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: demo_data
+  profiles:
+    active: ${ENV:dev}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    password: ${DATABASE_PASSWORD:root}
+    username: ${DATABASE_USERNAME:root}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/demo_data}
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  flyway:
+    baseline-on-migrate: true
+server:
+  port: ${SERVER_PORT:8080}
